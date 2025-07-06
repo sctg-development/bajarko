@@ -1,4 +1,4 @@
-import { Container, Copy, Divider, Heading, Text, Tooltip, usePrompt } from "@medusajs/ui";
+import { Container, Copy, Divider, Heading, Text, usePrompt } from "@medusajs/ui";
 import { SellerStatusBadge } from "../../../../components/seller-status-badge/SellerStatusBagde";
 import { ActionsButton } from "../../../../common/ActionsButton";
 import { PencilSquare, User } from "@medusajs/icons";
@@ -58,7 +58,7 @@ export const SellerGeneralSection = ({ seller }: { seller: any }) => {
               </div>
             </div>
             <div className="flex">
-              <Text size="xsmall">id: {seller.id}</Text><Copy content={seller.id} />
+              <Text size="xsmall">id: {seller.id}</Text>&nbsp;<Copy content={seller.id} />
             </div>
           </div>
         </Container>
