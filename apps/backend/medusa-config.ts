@@ -69,7 +69,7 @@ module.exports = defineConfig({
             resolve: '@mercurjs/resend',
             id: 'resend',
             options: {
-              channels: ['email'],
+              channels: [],
               api_key: process.env.RESEND_API_KEY,
               from: process.env.RESEND_FROM_EMAIL
             }
@@ -78,7 +78,7 @@ module.exports = defineConfig({
             resolve: '@medusajs/medusa/notification-local',
             id: 'local',
             options: {
-              channels: ['feed', 'seller_feed']
+              channels: ['feed', 'seller_feed', 'email']
             }
           }
         ]

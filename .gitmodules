@@ -1,0 +1,3 @@
+[submodule "bajarko-vendor-panel"]
+	path = bajarko-vendor-panel
+	url = git@github.com:sctg-development/bajarko-vendor-panel.git
