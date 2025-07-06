@@ -34,8 +34,17 @@ CMD [ "-c", "ssl=on" , "-c", "ssl_cert_file=/var/lib/postgresql/postgresdb.crt",
 # docker run -it -p 5432:5432 --name medusa_db -e POSTGRES_PASSWORD=postgres sctg/bajarko-db:15-alpine
 #
 # To run the container with data persistence, you can use the following command:
-# docker run -it -p 5432:5432 --name medusa_db -e POSTGRES_PASSWORD=postgres -v /path/to/your/data:/var/lib/postgresql/data
+# docker run -it -p 5432:5432 --name medusa_db -e POSTGRES_PASSWORD=postgres -v /path/to/your/data:/var/lib/postgresql/data sctg/bajarko-db:15-alpine
 #
 # To use the client tools, you can run the following sample commands:
 # docker run -it sctg/bajarko-db:15-alpine psql --help
 # docker run -it sctg/bajarko-db:15-alpine psql "postgresql://postgres:postgres@192.168.2.45?sslmode=require"
+# docker run -it sctg/bajarko-db:15-alpine psql "postgresql://postgres:postgres@192.168.2.45?sslmode=require" -c "CREATE USER medusa WITH PASSWORD 'secret_password';"
+# docker run -it sctg/bajarko-db:15-alpine psql "postgresql://postgres:postgres@192.168.2.45?sslmode=require" -c "CREATE DATABASE medusa OWNER medusa;"
+# docker run -it sctg/bajarko-db:15-alpine psql "postgresql://postgres:postgres@192.168.2.45?sslmode=require" -c "GRANT ALL PRIVILEGES ON DATABASE medusa TO medusa;"
+# 
+# To backup the database, you can use the following command:
+# docker run -e PGPASSWORD=postgres -it sctg/bajarko-db:15-alpine pg_dump -h 192.168.2.45 -U postgres -d medusa > $PROJECT_ROOT/bajarko-db/medusa_backup.sql
+#
+# To restore the database, you can use the following command:
+# cat $PROJECT_ROOT/bajarko-db/medusa_backup.sql | docker run -i -e PGPASSWORD=postgres sctg/bajarko-db:15-alpine psql -h 192.168.2.45 -U postgres -d medusa
