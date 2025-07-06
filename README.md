@@ -95,11 +95,14 @@ DATABASE_URL=postgres://[user]:[password]@[address]:[port]/$DB_NAME
 # For example:
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/$DB_NAME
 
+# Add database CA
+export NODE_EXTRA_CA_CERTS=$PROJECT_ROOT/bajarko-db/out/sctg-development-fake-CA.crt
+
 # Setup database and run migrations
 yarn medusa db:create && yarn medusa db:migrate && yarn run seed
 
 # Create admin user
-npx medusa user --email <email> --password <password>
+npx medusa user --email $MEDUSA_EMAIL --password $MEDUSA_PASSWORD
 
 # Go to root folder
 cd ../..
