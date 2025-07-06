@@ -154,6 +154,7 @@ export async function POST(
     input: {
       seller: {
         name: req.body.name,
+        email: req.body.email, // Add email to seller
         description: req.body.description
       },
       member: {
