@@ -611,3 +611,31 @@ export const useOrderSet = (id: string) => {
       })
   })
 }
+
+export const useCreateSeller = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({
+      name,
+      email,
+      member_name,
+      description,
+      phone
+    }: {
+      name: string
+      email: string
+      member_name: string
+      description?: string
+      phone?: string
+    }) =>
+      mercurQuery('/admin/sellers', {
+        method: 'POST',
+        body: { name, email, member_name, description, phone }
+      }),
+    onSuccess: () => {
+      // Invalidate sellers queries to refresh the list
+      queryClient.invalidateQueries({ queryKey: sellerQueryKeys.all })
+    }
+  })
+}

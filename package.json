@@ -18,6 +18,7 @@
     "mercur-exec": "turbo run dev",
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:backend": "turbo run build",
     "format": "turbo run format",
     "lint": "turbo run lint",
     "codegen": "cd .",

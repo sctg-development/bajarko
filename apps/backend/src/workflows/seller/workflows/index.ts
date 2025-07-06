@@ -1,4 +1,5 @@
 export * from './create-seller'
+export * from './create-seller-and-send-email'
 export * from './update-seller'
 export * from './delete-seller'
 export * from './create-onboarding-for-seller'

@@ -3,6 +3,7 @@ export enum ResendNotificationTemplates {
   BUYER_NEW_ORDER = 'buyerNewOrderEmailTemplate',
   BUYER_CANCELED_ORDER = 'buyerCancelOrderEmailTemplate',
   BUYER_ORDER_SHIPPED = 'buyerOrderShippedEmailTemplate',
+  SELLER_ACCOUNT_CREATED = 'sellerAccountCreatedEmailTemplate',
   SELLER_ACCOUNT_UPDATES_SUBMISSION = 'sellerAccountSubmissionEmailTemplate',
   SELLER_ACCOUNT_UPDATES_APPROVAL = 'sellerAccountApprovedEmailTemplate',
   SELLER_ACCOUNT_UPDATES_REJECTION = 'sellerAccountRejectedEmailTemplate',

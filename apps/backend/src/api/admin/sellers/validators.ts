@@ -59,3 +59,12 @@ export const AdminInviteSeller = z.object({
   email: z.string().email(),
   registration_url: z.string().default('http://localhost:5173/register')
 })
+
+export type AdminCreateSellerType = z.infer<typeof AdminCreateSeller>
+export const AdminCreateSeller = z.object({
+  name: z.preprocess((val: string) => val.trim(), z.string().min(4)),
+  email: z.string().email(),
+  member_name: z.string().min(2),
+  description: z.string().optional(),
+  phone: z.string().optional()
+}).strict()
