@@ -13,6 +13,11 @@
       "cache": false,
       "persistent": true
     },
+    "build:admin": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
     "generate:oas": {
       "cache": false
     },
