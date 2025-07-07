@@ -1,4 +1,6 @@
 import { defineConfig, loadEnv } from '@medusajs/framework/utils'
+import dotenv from 'dotenv'
+import dotenvExpand from 'dotenv-expand'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
