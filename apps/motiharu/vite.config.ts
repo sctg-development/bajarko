@@ -3,8 +3,11 @@ import react from "@vitejs/plugin-react";
 import { githubPagesSpa } from "@sctg/vite-plugin-github-pages-spa";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
-
+import dotenv from "dotenv";
+import dotenvExpand from "dotenv-expand";
 import _package from "./package.json" with { type: "json" };
+
+dotenvExpand.expand(dotenv.config({ path: "./.env" }));
 
 /**
  * Package.json type definition for React project
@@ -65,6 +68,11 @@ export function extractPerVendorDependencies(
  * @see https://vitejs.dev/config/
  */
 export default defineConfig({
+  define: {
+    MEDUSA_BACKEND_URL: JSON.stringify(process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"),
+    MEDUSA_PUBLISHABLE_KEY: JSON.stringify(process.env.MEDUSA_PUBLISHABLE_KEY || ""),
+    MOTIHARU_SELLER_ID: JSON.stringify(process.env.MOTIHARU_SELLER_ID || ""),
+  },
   plugins: [react(), tsconfigPaths(), tailwindcss(), githubPagesSpa()],
   build: {
     // Enable source maps for better debugging experience

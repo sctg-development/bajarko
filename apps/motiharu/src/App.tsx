@@ -10,6 +10,7 @@ import DocsPage from "@/pages/docs";
 import PricingPage from "@/pages/pricing";
 import BlogPage from "@/pages/blog";
 import AboutPage from "@/pages/about";
+import ProductsDemo from "./pages/products-demo";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
         <Route element={<IndexPage />} path="/index" />
         <Route element={<DocsPage />} path="/docs" />
         <Route element={<PricingPage />} path="/pricing" />
-        <Route element={<BlogPage />} path="/blog" />
+        <Route element={<ProductsDemo />} path="/blog" />
+        <Route element={<BlogPage />} path="/blog-old" />
         <Route element={<AboutPage />} path="/about" />
         <Route element={<PageNotFound />} path="*" />
       </Routes>
