@@ -1,0 +1,13 @@
+.env.*
+!.env.template
+.cache
+build
+public/build
+app/tailwind.css
+prod.package.json
+vite.config.ts.timestamp-*.mjs
+
+.yalc
+yalc.lock
+
+.react-router

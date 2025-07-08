@@ -53,6 +53,12 @@ class SellerModuleService extends MedusaService({
 
   async validateInviteToken(token: string) {
     const jwtSecret = this.httpConfig_.jwtSecret;
+    if (!jwtSecret) {
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        "JWT secret is not configured"
+      );
+    }
     const decoded: JwtPayload = jwt.verify(token, jwtSecret, {
       complete: true,
     });

@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-50: 248 250 252;
+    --color-primary-100: 241 245 249;
+    --color-primary-200: 226 232 240;
+    --color-primary-300: 203 213 225;
+    --color-primary-400: 148 163 184;
+    --color-primary-500: 100 116 139;
+    --color-primary-600: 71 85 105;
+    --color-primary-700: 51 65 85;
+    --color-primary-800: 30 41 59;
+    --color-primary-900: 15 23 42;
+    --color-primary-DEFAULT: 15 23 42;
+    --color-accent-50: 93 106 81;
+    --color-accent-100: 105 122 93;
+    --color-accent-200: 117 138 105;
+    --color-accent-300: 129 154 117;
+    --color-accent-400: 141 170 129;
+    --color-accent-500: 153 186 141;
+    --color-accent-600: 165 202 153;
+    --color-accent-700: 177 218 165;
+    --color-accent-800: 189 234 177;
+    --color-accent-900: 193 210 181;
+    --color-accent-DEFAULT: 193 210 181;
+    --color-highlight-50: 255 251 245;
+    --color-highlight-100: 248 249 241;
+    --color-highlight-200: 244 247 235;
+    --color-highlight-300: 240 245 229;
+    --color-highlight-400: 236 243 223;
+    --color-highlight-500: 232 241 217;
+    --color-highlight-600: 228 239 211;
+    --color-highlight-700: 224 237 205;
+    --color-highlight-800: 220 235 199;
+    --color-highlight-900: 243 234 209;
+    --color-highlight-DEFAULT: 243 234 209;
+    --font-display: 'Sen', ui-serif, Georgia, Cambria, 'Times New Roman', Times,
+      serif;
+    --font-body: Sen, ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --mkt-header-height: 46px;
+    --mkt-header-height-desktop: 72px;
+  }
+
+  @font-face {
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap)
+      format('truetype');
+  }
+  @font-face {
+    font-family: 'Italiana', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.googleapis.com/css2?family=Italiana&display=swap)
+      format('truetype');
+  }
+  @font-face {
+    font-family: 'Ballet', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&display=swap)
+      format('truetype');
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+
+  .order-summary {
+    @apply !bg-white;
+  }
+}
+
+@layer components {
+  .prose h1,
+  .prose h2 {
+    margin-bottom: 0.5em;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply leading-[1.15] text-inherit;
+  }
+
+  .prose a {
+    @apply text-primary-600 hover:text-primary-500 focus:ring-primary-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-offset-1;
+  }
+}
+
+@layer utilities {
+  .position-bottom {
+    @apply left-1/2 right-auto mt-2 origin-top -translate-x-1/2;
+  }
+  .position-bottom-left {
+    @apply left-0 right-auto mt-2 origin-top-left;
+  }
+  .position-bottom-right {
+    @apply right-0 left-auto mt-2 origin-top-right;
+  }
+  .position-top {
+    @apply left-1/2 right-auto top-auto bottom-full mb-2 origin-bottom -translate-x-1/2;
+  }
+  .position-top-left {
+    @apply left-0 right-auto bottom-full top-auto mb-2 origin-bottom-left;
+  }
+  .position-top-right {
+    @apply right-0 left-auto bottom-full top-auto mb-2 origin-bottom-right;
+  }
+  .position-left {
+    @apply right-full left-auto top-1/2 bottom-auto mr-2 origin-right -translate-y-1/2;
+  }
+  .position-left-top {
+    @apply right-full left-auto top-0 bottom-auto mr-2 origin-top-left;
+  }
+  .position-left-bottom {
+    @apply right-full left-auto bottom-0 top-auto mr-2 origin-bottom-left;
+  }
+  .position-right {
+    @apply left-full right-auto top-1/2 bottom-auto ml-2 origin-left -translate-y-1/2;
+  }
+  .position-right-top {
+    @apply left-full right-auto top-0 bottom-auto ml-2 origin-top-right;
+  }
+  .position-right-bottom {
+    @apply left-full right-auto bottom-0 top-auto ml-2 origin-bottom-right;
+  }
+}
+
+.mkt-section {
+  color: rgb(var(--default-color));
+  text-align: var(--default-text-align);
+  font-family: var(--default-font-family);
+  font-size: var(--default-font-size);
+  font-weight: var(--default-font-weight);
+  background-image: var(--default-background-image);
+  background-color: rgb(var(--default-background-color));
+  background-position: var(--default-background-position, center);
+  background-size: var(--default-background-size, cover);
+  background-repeat: var(--default-background-repeat, no-repeat);
+  padding-top: var(--default-padding-top);
+  padding-right: var(--default-padding-right);
+  padding-bottom: var(--default-padding-bottom);
+  padding-left: var(--default-padding-left);
+  margin-top: var(--default-margin-top);
+  margin-right: var(--default-margin-right);
+  margin-bottom: var(--default-margin-bottom);
+  margin-left: var(--default-margin-left);
+}
+
+.mkt-section__background-overlay {
+  @apply absolute top-0 left-0 right-0 bottom-0;
+  background-color: rgb(
+    var(--default-background-overlay-color) /
+      var(--default-background-overlay-opacity, 0.3)
+  );
+  backdrop-filter: blur(var(--default-background-overlay-blur, 0px));
+  mix-blend-mode: var(--default-background-overlay-blend-mode, normal);
+}
+
+@media (max-width: 639px) {
+  .mkt-section {
+    color: rgb(var(--mobile-color, var(--default-color)));
+    text-align: var(--mobile-text-align, var(--default-text-align));
+    font-family: var(--mobile-font-family, var(--default-font-family));
+    font-size: var(--mobile-font-size, var(--default-font-size));
+    font-weight: var(--mobile-font-weight, var(--default-font-weight));
+    background-image: var(
+      --mobile-background-image,
+      var(--default-background-image)
+    );
+    background-color: rgb(
+      var(--mobile-background-color, var(--default-background-color))
+    );
+    background-position: var(
+      --mobile-background-position,
+      var(--default-background-position, center)
+    );
+    background-size: var(
+      --mobile-background-size,
+      var(--default-background-size, cover)
+    );
+    background-repeat: var(
+      --mobile-background-repeat,
+      var(--default-background-repeat, no-repeat)
+    );
+    padding-top: var(--mobile-padding-top, var(--default-padding-top));
+    padding-right: var(--mobile-padding-right, var(--default-padding-right));
+    padding-bottom: var(--mobile-padding-bottom, var(--default-padding-bottom));
+    padding-left: var(--mobile-padding-left, var(--default-padding-left));
+    margin-top: var(--mobile-margin-top, var(--default-margin-top));
+    margin-right: var(--mobile-margin-right, var(--default-margin-right));
+    margin-bottom: var(--mobile-margin-bottom, var(--default-margin-bottom));
+    margin-left: var(--mobile-margin-left, var(--default-margin-left));
+  }
+
+  .mkt-section__background-overlay {
+    background-color: rgb(
+      var(
+          --mobile-background-overlay-color,
+          var(--default-background-overlay-color)
+        ) /
+        var(
+          --mobile-background-overlay-opacity,
+          var(--default-background-overlay-opacity, 0.3)
+        )
+    );
+    backdrop-filter: blur(
+      var(
+        --mobile-background-overlay-blur,
+        var(--default-background-overlay-blur, 0px)
+      )
+    );
+    mix-blend-mode: var(
+      --mobile-background-overlay-blend-mode,
+      var(--default-background-overlay-blend-mode, normal)
+    );
+  }
+}

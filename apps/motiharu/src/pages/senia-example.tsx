@@ -32,7 +32,7 @@ export default function HomePage() {
                             // Loading skeletons
                             Array.from({ length: 3 }).map((_, index) => (
                                 <div key={index} className="group cursor-pointer">
-                                    <div className="aspect-square bg-neutral-200 mb-4 rounded-lg overflow-hidden animate-pulse" />
+                                    <div className="aspect-square bg-neutral-200 mb-4  overflow-hidden animate-pulse" />
                                     <div className="h-6 bg-neutral-200 rounded mb-2 animate-pulse" />
                                     <div className="h-4 bg-neutral-200 rounded w-2/3 animate-pulse" />
                                 </div>
@@ -45,7 +45,7 @@ export default function HomePage() {
 
                                 return (
                                     <div key={product.id} className="group cursor-pointer">
-                                        <div className="aspect-square bg-neutral-100 mb-4 rounded-lg overflow-hidden">
+                                        <div className="aspect-square bg-neutral-100 mb-4  overflow-hidden">
                                             {image ? (
                                                 <img
                                                     src={image}
@@ -75,7 +75,7 @@ export default function HomePage() {
                             // Fallback static content
                             <>
                                 <div className="group cursor-pointer">
-                                    <div className="aspect-square bg-neutral-100 mb-4 rounded-lg overflow-hidden">
+                                    <div className="aspect-square bg-neutral-100 mb-4  overflow-hidden">
                                         <div className="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 group-hover:scale-105 transition-transform duration-300" />
                                     </div>
                                     <h3 className="font-medium mb-2">Luxury Handbags</h3>
@@ -83,7 +83,7 @@ export default function HomePage() {
                                 </div>
 
                                 <div className="group cursor-pointer">
-                                    <div className="aspect-square bg-neutral-100 mb-4 rounded-lg overflow-hidden">
+                                    <div className="aspect-square bg-neutral-100 mb-4  overflow-hidden">
                                         <div className="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 group-hover:scale-105 transition-transform duration-300" />
                                     </div>
                                     <h3 className="font-medium mb-2">Evening Clutches</h3>
@@ -91,7 +91,7 @@ export default function HomePage() {
                                 </div>
 
                                 <div className="group cursor-pointer">
-                                    <div className="aspect-square bg-neutral-100 mb-4 rounded-lg overflow-hidden">
+                                    <div className="aspect-square bg-neutral-100 mb-4  overflow-hidden">
                                         <div className="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 group-hover:scale-105 transition-transform duration-300" />
                                     </div>
                                     <h3 className="font-medium mb-2">Travel Accessories</h3>
@@ -134,7 +134,7 @@ export default function HomePage() {
                                 Discover Our Process
                             </Button>
                         </div>
-                        <div className="aspect-square bg-neutral-200 rounded-lg" />
+                        <div className="aspect-square bg-neutral-200 " />
                     </div>
                 </section>
 
@@ -148,7 +148,7 @@ export default function HomePage() {
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                            className="flex-1 px-4 py-3 border border-neutral-300  focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                         />
                         <Button
                             size="lg"
