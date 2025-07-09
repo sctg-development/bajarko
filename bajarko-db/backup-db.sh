@@ -9,6 +9,7 @@ show_help() {
     echo "Options:"
     echo "  (no arguments)    Create a backup of the database"
     echo "  --restore         Restore the database from backup"
+    echo "  --create-user     Create the medusa user if it does not exist and grant privileges"
     echo "  --help, -h        Show this help message"
     echo ""
     echo "Environment variables:"
@@ -27,6 +28,9 @@ case "$1" in
         ;;
     "--restore")
         ACTION="restore"
+        ;;
+    "--create-user")
+        ACTION="create_user"
         ;;
     "--help"|"-h")
         show_help
@@ -132,6 +136,31 @@ perform_restore() {
     fi
 }
 
+# Create the medusa user if it does not exist and grant privileges
+create_medusa_user() {
+    echo "Creating medusa user if it does not exist..."
+    if docker run --rm -e PGPASSWORD=postgres sctg/bajarko-db:15-alpine psql -h $IP -U postgres -c "DO \$\$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'medusa') THEN
+        CREATE USER medusa WITH PASSWORD 'secret_password';
+    END IF;
+END\$$;" postgres && \
+       docker run --rm -e PGPASSWORD=postgres sctg/bajarko-db:15-alpine psql -h $IP -U postgres -d medusa -c "
+        GRANT ALL PRIVILEGES ON DATABASE medusa TO medusa;
+        GRANT ALL ON SCHEMA public TO medusa;
+        GRANT CREATE ON SCHEMA public TO medusa;
+        GRANT USAGE ON SCHEMA public TO medusa;
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO medusa;
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO medusa;
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO medusa;
+       "; then
+        echo "medusa user created and granted privileges successfully."
+    else
+        echo "Failed to create medusa user or grant privileges!"
+        exit 1
+    fi
+}
+
 # Execute the requested action
 case "$ACTION" in
     "backup")
@@ -139,5 +168,8 @@ case "$ACTION" in
         ;;
     "restore")
         perform_restore
+        ;;
+    "create_user")
+        create_medusa_user
         ;;
 esac
