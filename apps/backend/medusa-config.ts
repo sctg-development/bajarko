@@ -4,6 +4,27 @@ import dotenvExpand from 'dotenv-expand'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
+// Validate needed environment variables
+const requiredEnvVars = [
+  'DATABASE_URL',
+  'STORE_CORS',
+  'ADMIN_CORS',
+  'AUTH_CORS',]
+requiredEnvVars.forEach((envVar) => {
+  if (!process.env[envVar] || process.env[envVar] === '' || process.env[envVar].startsWith("$")) {
+    throw new Error(`Environment variable ${envVar} is required but not set: value is ${process.env[envVar] || 'undefined'}`)
+  }
+})
+
+//Display the required environment variables
+console.log(`Starting Medusa backend with the following environment variables:
+  DATABASE_URL: ${process.env.DATABASE_URL}
+  STORE_CORS: ${process.env.STORE_CORS}
+  ADMIN_CORS: ${process.env.ADMIN_CORS}
+  AUTH_CORS: ${process.env.AUTH_CORS}
+  JWT_SECRET: ${process.env.JWT_SECRET || 'supersecret'}
+  COOKIE_SECRET: ${process.env.COOKIE_SECRET || 'supersecret'}
+`)
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
