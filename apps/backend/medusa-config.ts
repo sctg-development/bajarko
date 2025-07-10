@@ -24,6 +24,7 @@ console.log(`Starting Medusa backend with the following environment variables:
   AUTH_CORS: ${process.env.AUTH_CORS}
   JWT_SECRET: ${process.env.JWT_SECRET || 'supersecret'}
   COOKIE_SECRET: ${process.env.COOKIE_SECRET || 'supersecret'}
+  VENDOR_CORS: ${process.env.VENDOR_CORS || '*'}
 `)
 module.exports = defineConfig({
   projectConfig: {
@@ -32,6 +33,8 @@ module.exports = defineConfig({
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
+      // @ts-expect-error: vendorCors is not a valid config
+      vendorCors: process.env.VENDOR_CORS || '*',
       jwtSecret: process.env.JWT_SECRET || 'supersecret',
       cookieSecret: process.env.COOKIE_SECRET || 'supersecret'
     }

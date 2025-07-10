@@ -8,6 +8,7 @@ import { unlessBaseUrl } from '../../shared/infra/http/utils'
 import { vendorAttributeMiddlewares } from './attributes/middlewares'
 import { vendorCampaignsMiddlewares } from './campaigns/middlewares'
 import { vendorCommissionMiddlewares } from './commission/middlewares'
+import { vendorCors } from './cors'
 import { vendorCustomerGroupsMiddlewares } from './customer-groups/middlewares'
 import { vendorCustomersMiddlewares } from './customers/middlewares'
 import { vendorFulfillmentProvidersMiddlewares } from './fulfillment-providers/middlewares'
@@ -42,6 +43,10 @@ import { vendorStoresMiddlewares } from './stores/middlewares'
 import { vendorUploadMiddlewares } from './uploads/middlewares'
 
 export const vendorMiddlewares: MiddlewareRoute[] = [
+  {
+    matcher: '/vendor*',
+    middlewares: [vendorCors]
+  },
   /**
    * @desc Here we are authenticating the seller routes
    * except for the route for creating a seller
