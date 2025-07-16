@@ -21,9 +21,14 @@ export const useSellersTableColumns = () => {
         cell: ({ row }) => row.original.name
       }),
       columnHelper.display({
+        id: 'id',
+        header: 'ID',
+        cell: ({ row }) => <>{row.original.id}</>
+      }),
+      columnHelper.display({
         id: 'store_status',
         header: 'Account Status',
-        cell: ({row}) => <SellerStatusBadge status={row.original.store_status || '-' } />
+        cell: ({ row }) => <SellerStatusBadge status={row.original.store_status || '-'} />
       }),
       columnHelper.display({
         id: 'created_at',

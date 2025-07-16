@@ -3,6 +3,7 @@ import { MiddlewareRoute, authenticate } from '@medusajs/framework'
 import { storeCartsMiddlewares } from './carts/middlewares'
 import { storeOrderSetMiddlewares } from './order-set/middlewares'
 import { storeOrderReturnRequestsMiddlewares } from './return-request/middlewares'
+import { storeProductMiddlewares } from './products/middlewares'
 import { storeReturnsMiddlewares } from './returns/middlewares'
 import { storeReviewMiddlewares } from './reviews/middlewares'
 import { storeSellerMiddlewares } from './seller/middlewares'
@@ -21,9 +22,10 @@ export const storeMiddlewares: MiddlewareRoute[] = [
   ...storeCartsMiddlewares,
   ...storeOrderReturnRequestsMiddlewares,
   ...storeOrderSetMiddlewares,
+  ...storeProductMiddlewares,
   ...storeReviewMiddlewares,
   ...storeSellerMiddlewares,
   ...storeShippingOptionRoutesMiddlewares,
   ...storeWishlistMiddlewares,
-  ...storeReturnsMiddlewares
+  ...storeReturnsMiddlewares,
 ]

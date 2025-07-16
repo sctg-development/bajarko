@@ -11,6 +11,7 @@ import {
   adminSellerQueryConfig
 } from './query-config'
 import {
+  AdminCreateSeller,
   AdminGetSellerCustomerGroupsParams,
   AdminGetSellerOrdersParams,
   AdminGetSellerProductsParams,
@@ -100,5 +101,10 @@ export const sellerMiddlewares: MiddlewareRoute[] = [
     method: ['POST'],
     matcher: '/admin/sellers/invite',
     middlewares: [validateAndTransformBody(AdminInviteSeller)]
+  },
+  {
+    method: ['POST'],
+    matcher: '/admin/sellers',
+    middlewares: [validateAndTransformBody(AdminCreateSeller)]
   }
 ]

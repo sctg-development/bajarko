@@ -347,9 +347,12 @@ export const useUpdateSeller = () => {
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: any }) =>
       mercurQuery(`/admin/sellers/${id}`, { method: 'POST', body: data }),
-    onSuccess: (_, { id }) => {
-      queryClient.invalidateQueries({ queryKey: sellerQueryKeys.list() })
-      queryClient.invalidateQueries({ queryKey: sellerQueryKeys.detail(id) })
+    onSuccess: () => {
+      // Use the same invalidation strategy as useCreateSeller
+      queryClient.invalidateQueries({
+        queryKey: sellerQueryKeys.all,
+        exact: false
+      })
     }
   })
 }
@@ -609,5 +612,36 @@ export const useOrderSet = (id: string) => {
       mercurQuery(`/admin/order-sets?order_id=${id}`, {
         method: 'GET'
       })
+  })
+}
+
+export const useCreateSeller = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({
+      name,
+      email,
+      member_name,
+      description,
+      phone
+    }: {
+      name: string
+      email: string
+      member_name: string
+      description?: string
+      phone?: string
+    }) =>
+      mercurQuery('/admin/sellers', {
+        method: 'POST',
+        body: { name, email, member_name, description, phone }
+      }),
+    onSuccess: () => {
+      // Invalidate all seller-related queries to refresh the list
+      queryClient.invalidateQueries({
+        queryKey: sellerQueryKeys.all,
+        exact: false
+      })
+    }
   })
 }

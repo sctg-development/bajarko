@@ -1,4 +1,4 @@
-import { Container, Divider, Heading, Text, usePrompt } from "@medusajs/ui";
+import { Container, Copy, Divider, Heading, Text, usePrompt } from "@medusajs/ui";
 import { SellerStatusBadge } from "../../../../components/seller-status-badge/SellerStatusBagde";
 import { ActionsButton } from "../../../../common/ActionsButton";
 import { PencilSquare, User } from "@medusajs/icons";
@@ -12,7 +12,7 @@ export const SellerGeneralSection = ({ seller }: { seller: any }) => {
   const { mutateAsync: suspendSeller } = useUpdateSeller();
 
   const dialog = usePrompt()
-  
+
   const handleSuspend = async () => {
     const res = await dialog({
       title: seller.store_status === "SUSPENDED" ? "Activate account" : "Suspend account",
@@ -36,24 +36,29 @@ export const SellerGeneralSection = ({ seller }: { seller: any }) => {
     <>
       <div>
         <Container className="mb-2">
-          <div className="flex items-center justify-between">
-            <Heading>{seller.email || seller.name}</Heading>
-            <div className="flex items-center gap-2">
-              <SellerStatusBadge status={seller.store_status || 'pending'} />
-              <ActionsButton
-                actions={[
-                  {
-                    label: "Edit",
-                    onClick: () => navigate(`/sellers/${seller.id}/edit`),
-                    icon: <PencilSquare />
-                  },
-                  {
-                    label: seller.store_status === "SUSPENDED" ? "Activate account" : "Suspend account",
-                    onClick: () => handleSuspend(),
-                    icon: <User />
-                  }
-                ]}
-              />
+          <div>
+            <div className="flex items-center justify-between">
+              <Heading>{seller.email || seller.name}</Heading>
+              <div className="flex items-center gap-2">
+                <SellerStatusBadge status={seller.store_status || 'pending'} />
+                <ActionsButton
+                  actions={[
+                    {
+                      label: "Edit",
+                      onClick: () => navigate(`/sellers/${seller.id}/edit`),
+                      icon: <PencilSquare />
+                    },
+                    {
+                      label: seller.store_status === "SUSPENDED" ? "Activate account" : "Suspend account",
+                      onClick: () => handleSuspend(),
+                      icon: <User />
+                    }
+                  ]}
+                />
+              </div>
+            </div>
+            <div className="flex">
+              <Text size="xsmall">id: {seller.id}</Text>&nbsp;<Copy content={seller.id} />
             </div>
           </div>
         </Container>

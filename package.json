@@ -3,12 +3,15 @@
   "name": "mercur",
   "version": "1.0.0",
   "devDependencies": {
-    "turbo": "^2.3.3"
+    "@playwright/test": "^1.54.1",
+    "ts-node": "10.9.1",
+    "turbo": "2.5.4",
+    "typescript": "5.8.3"
   },
   "bin": {
     "mercur-exec": "./index.js"
   },
-  "packageManager": "yarn@1.22.21",
+  "packageManager": "yarn@4.9.2",
   "workspaces": [
     "apps/*",
     "packages/*",
@@ -21,6 +24,9 @@
     "format": "turbo run format",
     "lint": "turbo run lint",
     "codegen": "cd .",
-    "generate:oas": "turbo run generate:oas"
+    "generate:oas": "turbo run generate:oas",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug"
   }
 }
