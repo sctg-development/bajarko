@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Test de connexion admin et vérification du vendeur', async ({ page }) => {
+test('Test: admin connexion and seller verification', async ({ page }) => {
     // Retrieve environment variables
     const email = process.env.MEDUSA_EMAIL;
     const password = process.env.MEDUSA_PASSWORD;
