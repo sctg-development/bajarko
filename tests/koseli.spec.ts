@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Koseli category products verification', async ({ page }) => {
     // Step 1: Go to the Koseli homepage
-    await page.goto('http://localhost:5176/fr');
+    await page.goto('http://localhost:5176/fr', { waitUntil: 'networkidle' });
 
     // Step 2: Wait for the page to be fully loaded
     await page.waitForLoadState('networkidle', { timeout: 30000 });
