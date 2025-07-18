@@ -11,7 +11,7 @@ test('Vendor panel login and product verification', async ({ page }) => {
     }
 
     // Step 1: Go to the vendor panel login page
-    await page.goto('http://localhost:5173/login');
+    await page.goto('http://localhost:5173/login', { waitUntil: 'networkidle' });
 
     // Wait for the page to be fully loaded
     await page.waitForLoadState('networkidle');

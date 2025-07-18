@@ -11,7 +11,7 @@ test('Test: admin connexion and seller verification', async ({ page }) => {
     }
 
     // Step 1: Go to the login page
-    await page.goto('/app/login');
+    await page.goto('/app/login', { waitUntil: 'networkidle' });
 
     // Wait for the page to be fully loaded
     await page.waitForLoadState('networkidle');
