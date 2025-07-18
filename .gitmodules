@@ -1,3 +1,6 @@
 [submodule "apps/vendor-panel"]
 	path = apps/vendor-panel
 	url = git@github.com:sctg-development/bajarko-vendor-panel.git
+[submodule "apps/koseli"]
+	path = apps/koseli
+	url = git@github.com:sctg-development/koseli.git
