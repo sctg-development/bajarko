@@ -15,7 +15,7 @@ export const getProductsById = ({
       region_id: regionId,
       fields: '*variants.calculated_price,+variants.inventory_quantity',
     })
-    .then(({ products }) => products);
+    .then(({ products }: { products: HttpTypes.StoreProduct[] }) => products);
 };
 
 export const getProductByHandle = async (handle: string, regionId: string) => {
@@ -25,7 +25,7 @@ export const getProductByHandle = async (handle: string, regionId: string) => {
       region_id: regionId,
       fields: '*variants.calculated_price,+variants.inventory_quantity',
     })
-    .then(({ products }) => products[0]);
+    .then(({ products }: { products: HttpTypes.StoreProduct[] }) => products[0]);
 };
 
 export const getProductsList = async ({
@@ -57,10 +57,10 @@ export const getProductsList = async ({
       limit,
       offset,
       region_id: region.id,
-      fields: '*variants.calculated_price',
+      fields: '*variants.calculated_price,+variants.inventory_quantity',
       ...queryParams,
     })
-    .then(({ products, count }) => {
+    .then(({ products, count }: { products: HttpTypes.StoreProduct[]; count: number }) => {
       const nextPage = count > offset + limit ? pageParam + 1 : null;
 
       return {

@@ -20,6 +20,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 
   const { products, count, limit, offset } = await fetchProducts(request, {
     category_id: category.id,
+    fields: '*variants.calculated_price,+variants.inventory_quantity',
   });
 
   return {

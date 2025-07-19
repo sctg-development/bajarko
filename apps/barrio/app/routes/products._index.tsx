@@ -7,7 +7,9 @@ import { LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { products, count, limit, offset } = await fetchProducts(request, {});
+  const { products, count, limit, offset } = await fetchProducts(request, {
+    fields: '*variants.calculated_price,+variants.inventory_quantity',
+  });
 
   return { products, count, limit, offset };
 };
