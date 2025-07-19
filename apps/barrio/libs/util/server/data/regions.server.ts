@@ -3,6 +3,7 @@ import { medusaError } from '@libs/util/medusaError';
 import { sdk, sdkCache } from '@libs/util/server/client.server';
 import { StoreRegionCountry } from '@medusajs/types';
 import { getSelectedRegionId } from '../cookies.server';
+import { config } from '../config.server';
 
 const ONE_HOUR_IN_MS = 3_600_000;
 
@@ -57,6 +58,7 @@ export const getDefaultRegion = async function () {
 };
 
 export const getSelectedRegion = async (headers: Headers) => {
+  headers.set('seller_id', BARRIO_SELLER_ID ?? '');
   const regionId = await getSelectedRegionId(headers);
 
   if (regionId) {

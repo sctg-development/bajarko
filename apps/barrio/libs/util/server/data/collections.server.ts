@@ -5,7 +5,7 @@ import { HttpTypes } from '@medusajs/types';
 import { MILLIS } from '../cache-builder.server';
 
 export const retrieveCollection = async function (id: string) {
-  return sdk.store.collection.retrieve(id, {}).then(({ collection }) => collection);
+  return sdk.store.collection.retrieve(id, {}, { seller_id: BARRIO_SELLER_ID }).then(({ collection }) => collection);
 };
 
 export const fetchCollections = async function (

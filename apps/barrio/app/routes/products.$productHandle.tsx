@@ -23,8 +23,27 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
   const product = products[0];
 
+  // Wrapper over fetchProductReviews for handling errors in fetching product reviews
+  const fetchProductReviewsWithErrorHandling = async (params: any) => {
+    try {
+      return await fetchProductReviews(params);
+    } catch (error) {
+      console.error('Error fetching product reviews:', error);
+      return { count: 0, reviews: [] };
+    }
+  };
+  // Wrapper over fetchProductReviewStats for handling errors in fetching product review stats
+  const fetchProductReviewStatsWithErrorHandling = async (params: any) => {
+    try {
+      return await fetchProductReviewStats(params);
+    } catch (error) {
+      console.error('Error fetching product review stats:', error);
+      return { product_review_stats: [] };
+    }
+  };
+
   const [productReviews, productReviewStats] = await Promise.all([
-    fetchProductReviews({
+    fetchProductReviewsWithErrorHandling({
       product_id: product.id,
       fields:
         'id,rating,content,name,images.url,created_at,updated_at,response.content,response.created_at,response.id',
@@ -34,7 +53,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
       offset: reviewsOffset,
       limit: reviewsLimit,
     }),
-    fetchProductReviewStats({
+    fetchProductReviewStatsWithErrorHandling({
       product_id: product.id,
       offset: 0,
       limit: 1,

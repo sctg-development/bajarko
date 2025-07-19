@@ -28,6 +28,7 @@ export const getRootLoader = async ({ request }: LoaderFunctionArgs) => {
 
   const headers = new Headers();
 
+  headers.set('seller_id', config.SELLER_ID ?? '');
   const currentRegionCookieId = await getSelectedRegionId(headers);
 
   if (currentRegionCookieId !== region?.id) {

@@ -23,17 +23,30 @@ export function formatPrice(amount: number | null, options: FormatPriceOptions) 
 
 export function sortProductVariantsByPrice(product: StoreProduct) {
   if (!product.variants) return [];
-  return product.variants.sort((a, b) => getVariantFinalPrice(a) - getVariantFinalPrice(b));
+  return product.variants
+    .filter(variant => variant != null) // Filtrer les variants null/undefined
+    .sort((a, b) => getVariantFinalPrice(a) - getVariantFinalPrice(b));
 }
 
 export function getVariantPrices(variant: StoreProductVariant) {
+  if (!variant) {
+    return {
+      calculated: 0,
+      original: 0,
+    };
+  }
+
   return {
-    calculated: variant.calculated_price?.calculated_amount,
-    original: variant.calculated_price?.original_amount,
+    calculated: variant.calculated_price?.calculated_amount || 0,
+    original: variant.calculated_price?.original_amount || 0,
   };
 }
 
 export function getVariantFinalPrice(variant: StoreProductVariant) {
+  if (!variant) {
+    return 0;
+  }
+
   const { calculated, original } = getVariantPrices(variant);
 
   return (isNumber(calculated) ? calculated : original) as number;

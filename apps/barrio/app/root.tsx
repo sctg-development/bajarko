@@ -108,6 +108,33 @@ export function ErrorBoundary() {
 
   console.error('error boundary error', error);
 
+  // Handle 404 errors gracefully - don't crash the whole app
+  if (error && typeof error === 'object' && 'status' in error && error.status === 404) {
+    console.warn('404 error handled gracefully:', error);
+
+    return (
+      <html>
+        <head>
+          <title>Page Not Found</title>
+          <Meta />
+          <Links />
+        </head>
+        <body>
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-gray-900">404</h1>
+              <p className="text-gray-600 mt-4">The page you're looking for doesn't exist.</p>
+              <a href="/" className="mt-6 inline-block bg-blue-500 text-white px-6 py-2 rounded">
+                Go Home
+              </a>
+            </div>
+          </div>
+          <Scripts />
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html>
       <head>
@@ -116,6 +143,15 @@ export function ErrorBoundary() {
         <Links />
       </head>
       <body>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900">Something went wrong</h1>
+            <p className="text-gray-600 mt-4">An error occurred while loading this page.</p>
+            <a href="/" className="mt-6 inline-block bg-blue-500 text-white px-6 py-2 rounded">
+              Go Home
+            </a>
+          </div>
+        </div>
         <Scripts />
       </body>
     </html>

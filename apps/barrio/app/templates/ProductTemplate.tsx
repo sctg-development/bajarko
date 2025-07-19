@@ -81,6 +81,102 @@ const variantIsSoldOut: (variant: StoreProductVariant | undefined) => boolean = 
 };
 
 export const ProductTemplate = ({ product, reviewsCount, reviewStats }: ProductTemplateProps) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Render a placeholder during SSR
+  if (!isClient) {
+    return <ProductTemplatePlaceholder product={product} reviewsCount={reviewsCount} reviewStats={reviewStats} />;
+  }
+
+  return <ClientProductTemplate product={product} reviewsCount={reviewsCount} reviewStats={reviewStats} />;
+};
+
+const ProductTemplatePlaceholder = ({ product, reviewsCount, reviewStats }: ProductTemplateProps) => {
+  const breadcrumbs = getBreadcrumbs(product);
+
+  return (
+    <section className="pb-12 pt-12 xl:pt-24 min-h-screen">
+      <Container className="px-0 sm:px-6 md:px-8">
+        <Grid>
+          <GridColumn>
+            <div className="md:py-6">
+              <Grid className="!gap-0">
+                <GridColumn className="mb-8 md:col-span-6 lg:col-span-7 xl:pr-16 xl:pl-9">
+                  <ProductImageGallery key={product.id} product={product} />
+                </GridColumn>
+
+                <GridColumn className="flex flex-col md:col-span-6 lg:col-span-5">
+                  <div className="px-0 sm:px-6 md:p-10 md:pt-0">
+                    <div>
+                      <Breadcrumbs className="mb-6 text-primary" breadcrumbs={breadcrumbs} />
+
+                      <header className="flex gap-4 mb-2">
+                        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:tracking-tight">
+                          {product.title}
+                        </h1>
+                        <div className="flex-1" />
+                        <Share
+                          itemType="product"
+                          shareData={{
+                            title: product.title,
+                            text: truncate(product.description || 'Check out this product', {
+                              length: 200,
+                              separator: ' ',
+                            }),
+                          }}
+                        />
+                      </header>
+                    </div>
+
+                    <ProductReviewStars reviewsCount={reviewsCount} reviewStats={reviewStats} />
+
+                    <section aria-labelledby="product-information" className="mt-4">
+                      <h2 id="product-information" className="sr-only">
+                        Product information
+                      </h2>
+
+                      <p className="text-lg text-gray-900 sm:text-xl flex gap-3">
+                        <ProductPriceRange product={product} currencyCode="eur" />
+                      </p>
+                    </section>
+
+                    <div className="my-2 flex flex-col gap-2">
+                      <div className="flex items-center gap-4 py-2">
+                        <div className="flex-1">
+                          <button
+                            disabled
+                            className="!h-12 w-full whitespace-nowrap !text-base !font-bold bg-gray-300 text-gray-500 rounded px-4 py-2"
+                          >
+                            Loading...
+                          </button>
+                        </div>
+                      </div>
+
+                      {!!product.description && (
+                        <div className="mt-4">
+                          <h3 className="mb-2">Description</h3>
+                          <div className="whitespace-pre-wrap text-base text-primary-800">
+                            {product.description}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </GridColumn>
+              </Grid>
+            </div>
+          </GridColumn>
+        </Grid>
+      </Container>
+    </section>
+  );
+};
+
+const ClientProductTemplate = ({ product, reviewsCount, reviewStats }: ProductTemplateProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const addToCartFetcher = useFetcher<any>({ key: FetcherKeys.cart.createLineItem });
   const { toggleCartDrawer } = useCart();
@@ -124,9 +220,7 @@ export const ProductTemplate = ({ product, reviewsCount, reviewStats }: ProductT
     }, [product]),
   };
 
-  const form = useRemixForm({
-    resolver: zodResolver(createLineItemSchema),
-    defaultValues,
+  const form = useRemixForm<Zod.infer<typeof createLineItemSchema>>({
     fetcher: addToCartFetcher,
     submitConfig: {
       method: 'post',

@@ -26,6 +26,8 @@ export const fetchProductReviews = async (
         ...query,
         offset: query.offset ?? 0,
         limit: query.limit ?? 10,
+      }, {
+        seller_id: BARRIO_SELLER_ID,
       });
     },
   });

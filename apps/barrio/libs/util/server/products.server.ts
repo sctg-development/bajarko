@@ -16,6 +16,8 @@ export const fetchProducts = async (request: Request, { ...query }: HttpTypes.St
       return await sdk.store.product.list({
         ...query,
         region_id: region.id,
+      }, {
+        seller_id: BARRIO_SELLER_ID,
       });
     },
   });
