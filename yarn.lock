@@ -3119,7 +3119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@epic-web/cachified@npm:^5.2.0":
+"@epic-web/cachified@npm:^5.6.0":
   version: 5.6.0
   resolution: "@epic-web/cachified@npm:5.6.0"
   checksum: 10c0/fba67060c25af7d94a600ca8f99a9c29112ae823bf6ea0c9c722387beefeecd9d9ed8e23a6198eb523f9f89cd07ab28013c392258c34f82c1225cf2615f66763
@@ -20225,7 +20225,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "barrio@workspace:apps/barrio"
   dependencies:
-    "@epic-web/cachified": "npm:^5.2.0"
+    "@epic-web/cachified": "npm:^5.6.0"
     "@googlemaps/addressvalidation": "npm:^1.0.2"
     "@headlessui/react": "npm:^2.1.9"
     "@heroicons/react": "npm:^2.0.18"

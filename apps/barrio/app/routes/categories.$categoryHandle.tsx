@@ -3,6 +3,7 @@ import { ProductListWithPagination } from '@app/components/product/ProductListWi
 import { PageHeading } from '@app/components/sections/PageHeading';
 import { listCategories } from '@libs/util/server/data/categories.server';
 import { fetchProducts } from '@libs/util/server/products.server';
+import { HttpTypes } from '@medusajs/types';
 import clsx from 'clsx';
 import { LoaderFunctionArgs, redirect } from 'react-router';
 import { NavLink, useLoaderData } from 'react-router';
